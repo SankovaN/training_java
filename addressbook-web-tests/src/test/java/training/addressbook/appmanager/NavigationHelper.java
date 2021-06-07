@@ -14,8 +14,4 @@ public class NavigationHelper extends BaseHelper {
         click(By.linkText("groups"));
     }
 
-    public void gotoAddNew() {
-
-        click(By.linkText("add new"));
-    }
 }
