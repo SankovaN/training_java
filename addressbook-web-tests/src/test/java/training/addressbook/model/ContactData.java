@@ -3,30 +3,12 @@ package training.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id;
-    private final String name;
-    private final String lastname;
-    private final String email;
-    private final String address;
-    private final String phone;
-
-    public ContactData(int id, String name, String lastname, String email, String address, String phone) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public ContactData(String name, String lastname, String email, String address, String phone) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
-    }
+    private int id = Integer.MAX_VALUE;
+    private String name;
+    private String lastname;
+    private String email;
+    private String address;
+    private String phone;
 
     public String getName() {
         return name;
@@ -52,8 +34,34 @@ public class ContactData {
         return id;
     }
 
-    public void setId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withPhone(String phone) {
+        this.phone = phone;
+        return this;
     }
 
     @Override
