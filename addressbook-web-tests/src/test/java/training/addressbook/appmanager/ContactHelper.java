@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import training.addressbook.model.ContactData;
+import training.addressbook.model.Contacts;
 
 import java.util.HashSet;
 import java.util.List;
@@ -85,8 +86,8 @@ public class ContactHelper extends BaseHelper {
     }
 
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             element.findElements(By.tagName("td"));
