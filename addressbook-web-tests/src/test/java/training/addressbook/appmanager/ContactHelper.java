@@ -16,30 +16,30 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void gotoHomePage() {
-      click(By.linkText("home page"));
+        click(By.linkText("home page"));
     }
 
     public void submitContactForm() {
-       click(By.xpath("(//input[@name='submit'])[2]"));
+        click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
     public void fillContactForm(ContactData contactData) {
-      type(By.name("firstname"), contactData.getName());
-      type(By.name("lastname"), contactData.getLastname());
-      type(By.name("email"), contactData.getEmail());
-      type(By.name("address"), contactData.getAddress());
-      type(By.name("home"), contactData.getPhone());
+        type(By.name("firstname"), contactData.getName());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getPhone());
     }
 
     public void deleteSelectedContact() {
-      click(By.xpath("//input[@value='Delete']"));
-      wd.switchTo().alert().accept();
-      wd.findElement(By.cssSelector("div.msgbox"));
+        click(By.xpath("//input[@value='Delete']"));
+        wd.switchTo().alert().accept();
+        wd.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void selectContact(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
-         }
+    }
 
     public void initContactModification() {
         click(By.xpath("//img[@alt='Edit']"));
@@ -54,11 +54,24 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("add new"));
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         gotoAddNew();
         fillContactForm(contact);
         submitContactForm();
         gotoHomePage();
+    }
+
+    public void modify(int index, ContactData contact) {
+        selectContact(index);
+        initContactModification();
+        fillContactForm(contact);
+        submitContactModification();
+        gotoHomePage();
+    }
+
+    public void delete(int index) {
+        selectContact(index);
+        deleteSelectedContact();
     }
 
     public boolean isThereAContact() {
@@ -66,10 +79,10 @@ public class ContactHelper extends BaseHelper {
     }
 
     public int getContactCount() {
-       return wd.findElements(By.name("selected[]")).size();
+        return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
@@ -80,6 +93,6 @@ public class ContactHelper extends BaseHelper {
             ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
             contacts.add(contact);
         }
-            return contacts;
+        return contacts;
     }
 }

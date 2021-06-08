@@ -23,11 +23,11 @@ public class ApplicationManager {
 
     public void init() {
         if (browser.equals(BrowserType.FIREFOX)) {
-          wd = new FirefoxDriver();
+            wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
-          wd = new ChromeDriver();
+            wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {
-          wd = new InternetExplorerDriver();
+            wd = new InternetExplorerDriver();
         }
 
         wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -39,32 +39,32 @@ public class ApplicationManager {
     }
 
     public void login(String username, String password) {
-      wd.findElement(By.name("user")).click();
-      wd.findElement(By.name("user")).clear();
-      wd.findElement(By.name("user")).sendKeys(username);
-      wd.findElement(By.name("pass")).click();
-      wd.findElement(By.name("pass")).clear();
-      wd.findElement(By.name("pass")).sendKeys(password);
-      wd.findElement(By.xpath("//input[@value='Login']")).click();
+        wd.findElement(By.name("user")).click();
+        wd.findElement(By.name("user")).clear();
+        wd.findElement(By.name("user")).sendKeys(username);
+        wd.findElement(By.name("pass")).click();
+        wd.findElement(By.name("pass")).clear();
+        wd.findElement(By.name("pass")).sendKeys(password);
+        wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     public void logout() {
-      wd.findElement(By.linkText("Logout")).click();
+        wd.findElement(By.linkText("Logout")).click();
     }
 
     public void stop() {
         wd.quit();
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 }

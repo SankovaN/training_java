@@ -18,6 +18,7 @@ public class ContactData {
         this.address = address;
         this.phone = phone;
     }
+
     public ContactData(String name, String lastname, String email, String address, String phone) {
         this.id = Integer.MAX_VALUE;
         this.name = name;
@@ -26,6 +27,7 @@ public class ContactData {
         this.address = address;
         this.phone = phone;
     }
+
     public String getName() {
         return name;
     }
