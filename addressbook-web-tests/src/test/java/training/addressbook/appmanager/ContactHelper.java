@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import training.addressbook.model.ContactData;
 import training.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -44,8 +42,8 @@ public class ContactHelper extends BaseHelper {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {
@@ -66,7 +64,7 @@ public class ContactHelper extends BaseHelper {
 
     public void modify(ContactData contact) {
         selectContactById(contact.getId());
-        initContactModification();
+        initContactModification(index);
         fillContactForm(contact);
         submitContactModification();
         gotoHomePage();
