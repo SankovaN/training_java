@@ -1,5 +1,6 @@
 package training.addressbook.tests;
 
+import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import training.addressbook.model.GroupData;
@@ -26,9 +27,8 @@ public class GroupModificationTests extends TestBase {
      GroupData group = new GroupData()
              .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
      app.group().modify(group);
+     assertThat(app.group().count(), Matchers.equalTo(before.size()));
      Groups after = app.group().all();
-     assertEquals(after.size(), before.size());
-
      assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
     }
 
