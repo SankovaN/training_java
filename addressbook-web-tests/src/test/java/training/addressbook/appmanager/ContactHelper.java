@@ -99,10 +99,24 @@ public class ContactHelper extends BaseHelper {
             element.findElements(By.tagName("td"));
             String firstname = element.findElement(By.xpath(".//td[3]")).getText();
             String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+            String allPhones = element.findElement(By.xpath(".//td[6]")).getText();
             int id = Integer.parseInt(element.findElement(By.cssSelector("[name='entry']>.center>input")).getAttribute("value"));
-            contactCache.add(new ContactData().withId(id).withName(firstname).withLastname(lastname));
+            contactCache.add(new ContactData().withId(id).withName(firstname).withLastname(lastname)
+            .withAllPhones(allPhones));
         }
         return new Contacts(contactCache);
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withName(firstname).withLastname(lastname).withPhone(home)
+                .withMobile(mobile).withWork(work);
     }
 
 }
