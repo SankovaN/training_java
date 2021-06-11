@@ -1,8 +1,14 @@
 package training.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contact")
 public class ContactData {
+    @XStreamOmitField
     private int id = Integer.MAX_VALUE;
     private String name;
     private String lastname;
@@ -15,7 +21,16 @@ public class ContactData {
     private String email2;
     private String email3;
     private String allEmail;
+    private File photo;
 
+    public File getPhoto() {
+        return photo;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public String getAllPhones() {
         return allPhones;

@@ -29,6 +29,8 @@ public class ContactHelper extends BaseHelper {
         type(By.name("email"), contactData.getEmail());
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getPhone());
+        attach(By.name("photo"), contactData.getPhoto());
+
     }
 
     public void deleteSelectedContact() {

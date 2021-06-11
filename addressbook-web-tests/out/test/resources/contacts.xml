@@ -1,0 +1,23 @@
+<list>
+  <contact>
+    <name>firstname 0</name>
+    <lastname>lastname 0</lastname>
+    <email>nadya_sankova@mail.ru</email>
+    <address>address 0</address>
+    <phone>12345</phone>
+  </contact>
+  <contact>
+    <name>firstname 1</name>
+    <lastname>lastname 1</lastname>
+    <email>nadya_sankova@mail.ru</email>
+    <address>address 1</address>
+    <phone>12345</phone>
+  </contact>
+  <contact>
+    <name>firstname 2</name>
+    <lastname>lastname 2</lastname>
+    <email>nadya_sankova@mail.ru</email>
+    <address>address 2</address>
+    <phone>12345</phone>
+  </contact>
+</list>
