@@ -8,12 +8,4 @@
             <class name="training.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
-
-    <test name="Contacts">
-        <classes>
-            <class name="training.addressbook.tests.ContactCreationTests"/>
-            <class name="training.addressbook.tests.ContactModificationTests"/>
-            <class name="training.addressbook.tests.ContactDeletionTests"/>
-        </classes>
-    </test>
 </suite>
