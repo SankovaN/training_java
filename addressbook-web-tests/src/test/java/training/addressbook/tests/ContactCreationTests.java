@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import training.addressbook.model.ContactData;
 import training.addressbook.model.Contacts;
+import training.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
