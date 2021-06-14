@@ -135,4 +135,10 @@ public class ContactHelper extends BaseHelper {
         new org.openqa.selenium.support.ui.Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
         click(By.name("add"));
     }
+
+    public void deleteFromGroup(ContactData contact, GroupData group) {
+        new org.openqa.selenium.support.ui.Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(group.getId()));
+        selectContactById(contact.getId());
+        click(By.name("remove"));
+    }
 }
