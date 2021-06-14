@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import training.addressbook.model.ContactData;
 import training.addressbook.model.Contacts;
+import training.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -128,4 +129,10 @@ public class ContactHelper extends BaseHelper {
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
     }
 
+
+    public void addInGroup(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        new org.openqa.selenium.support.ui.Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
+        click(By.name("add"));
+    }
 }
