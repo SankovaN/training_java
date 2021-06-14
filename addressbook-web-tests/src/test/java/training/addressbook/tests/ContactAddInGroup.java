@@ -16,12 +16,12 @@ public class ContactAddInGroup extends TestBase {
     @BeforeMethod
     public void ensurePreconditions () {
         if (app.db().contacts().size() == 0) {
+            app.contact().create(new ContactData().withName("testname").withLastname("lastname").withEmail("111").withAddress("test address").withPhone("81111111111"));
         }
 
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
-
         }
     }
 
@@ -47,6 +47,7 @@ public class ContactAddInGroup extends TestBase {
             }
         }
         if(!contactNotInGroup) {
+            app.contact().create(new ContactData().withName("testname").withLastname("lastname").withEmail("111").withAddress("test address").withPhone("81111111111"));
         }
 
         app.goTo().homePage();
