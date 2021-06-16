@@ -24,8 +24,15 @@ public class UserData {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "access_level")
+    private short access_level;
+
     public int getId() {
         return id;
+    }
+
+    public int getAccess_level() {
+        return access_level;
     }
 
     public String getUsername() {

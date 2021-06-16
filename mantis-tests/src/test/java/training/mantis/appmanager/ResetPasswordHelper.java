@@ -20,15 +20,15 @@ public class ResetPasswordHelper extends BaseHelper {
     }
 
     public UserData resetPassword() {
-        List<UserData> result = app.db().users();
+        List<UserData> result = (List<UserData>) app.db().users();
         for (UserData user : result) {
-            if () {                            //добавить проверку условия
+            if (user.getAccess_level() == 25) {                            //добавить проверку условия
                 click(By.linkText(user.getUsername()));
             }
             click(By.cssSelector("input[value='Сбросить пароль']"));
             return user;
         }
-        return;
+        return null;
     }
 
 

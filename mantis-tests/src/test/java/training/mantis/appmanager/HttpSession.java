@@ -10,6 +10,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,10 +19,15 @@ import java.util.List;
 public class HttpSession {
     private CloseableHttpClient httpclient;
     private ApplicationManager app;
+    private WebDriver wd;
 
     public HttpSession(ApplicationManager app) {
         this.app = app;
         httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
+    }
+
+    public HttpSession(WebDriver wd) {
+        this.wd = wd;
     }
 
     public boolean login(String username, String password) throws IOException {
