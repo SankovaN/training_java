@@ -25,6 +25,7 @@ public class HttpSession {
     }
 
     public boolean login(String username, String password) throws IOException {
+        wd.get(app.getProperty("web.BaseUrl") + "/manage_user_page.php");
         HttpPost post = new HttpPost(app.getProperty("web.baseUrl") + "/login.php");
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("username", username));

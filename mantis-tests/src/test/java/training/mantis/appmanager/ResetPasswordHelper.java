@@ -1,6 +1,9 @@
 package training.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import training.mantis.model.UserData;
+
+import java.util.List;
 
 public class ResetPasswordHelper extends BaseHelper {
 
@@ -8,16 +11,26 @@ public class ResetPasswordHelper extends BaseHelper {
         super(app);
     }
 
-    public void resetPassword(String id) {
+    public void start(String username, String password) {
         wd.get(app.getProperty("web.baseUrl") + "/manage_user_page.php");
-        selectUserId(id);
-        click(By.cssSelector("input[value='Сбросить пароль']"));
+        type(By.name("username"), username);
+        click(By.cssSelector("input[type='submit']"));
+        type(By.name("password"), password);
+        click(By.cssSelector("input[type='submit']"));
     }
 
-    private void selectUserId(String id) {
-        //wd.findElement(By.cssSelector("a[href='edit.php?id=" + id +"']")).click();
-        click(By.cssSelector("a[href='manage_user_edit_page.php?user_id=" + id +"']"));
+    public UserData resetPassword() {
+        List<UserData> result = app.db().users();
+        for (UserData user : result) {
+            if () {                            //добавить проверку условия
+                click(By.linkText(user.getUsername()));
+            }
+            click(By.cssSelector("input[value='Сбросить пароль']"));
+            return user;
+        }
+        return;
     }
+
 
     public void finish(String confirmationLink, String password) {
         wd.get(confirmationLink);
