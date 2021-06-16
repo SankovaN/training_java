@@ -25,14 +25,18 @@ public class UserData {
     private String email;
 
     @Column(name = "access_level")
-    private short access_level;
+    private short accesslevel;
 
     public int getId() {
         return id;
     }
 
-    public int getAccess_level() {
-        return access_level;
+    public int getAccesslevel() {
+        return accesslevel;
+    }
+
+    public void setAccesslevel(short accesslevel) {
+        this.accesslevel = accesslevel;
     }
 
     public String getUsername() {
@@ -42,6 +46,7 @@ public class UserData {
     public String getEmail() {
         return email;
     }
+
 
     @Override
     public boolean equals(Object o) {

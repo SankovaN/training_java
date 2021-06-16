@@ -6,7 +6,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import training.mantis.model.UserData;
-import training.mantis.model.Users;
 
 import java.util.List;
 
@@ -22,12 +21,12 @@ public class DbHelper {
         sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
     }
 
-    public Users users() {
+    public List<UserData> users() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<UserData> result = session.createQuery( "from UserData" ).list();
         session.getTransaction().commit();
         session.close();
-        return new Users(result);
+        return result;
     }
 }

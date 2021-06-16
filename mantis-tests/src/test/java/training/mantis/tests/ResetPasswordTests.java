@@ -20,7 +20,6 @@ public class ResetPasswordTests extends TestBase{
         app.mail().start();
     }
 
-
     @Test
     public void testResetPassword () throws IOException, MessagingException {
         /*long now = System.currentTimeMillis();
@@ -41,13 +40,15 @@ public class ResetPasswordTests extends TestBase{
         //String email = String.format("user%s@localhost", now);
         //app.james().createUser(user, password);
         app.reset().start(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+        //app.james().start(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
         UserData value = app.reset().resetPassword();
         String email = value.getEmail();
         String user = value.getUsername();
         List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        //List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
+        //List<MailMessage> mailMessages = app.james().waitForMail(user, password1, 60000);
         String confirmationLink =  findConfirmationLink(mailMessages, email);
-        app.registration().finish(confirmationLink, password1);
+        //app.registration().finish(confirmationLink, password1);
+        app.reset().finish(confirmationLink, password1);
         assertTrue(app.newSession().login(user, password1));
     }
 
