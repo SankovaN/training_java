@@ -5,7 +5,7 @@ public class Issue {
     private int id;
     private String summary;
     private String description;
-    private String project;
+    private Project project;
 
     public int getId() {
         return id;
@@ -38,7 +38,7 @@ public class Issue {
         return project;
     }
 
-    public Issue withProject(String project) {
+    public Issue withProject(Project project) {
         this.project = project;
         return this;
     }
