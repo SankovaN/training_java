@@ -1,31 +1,15 @@
 package training.rest;
 
-import biz.futureware.mantis.rpc.soap.client.IssueData;
-import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
-import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
-import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import sun.plugin.util.PluginSysUtil;
-import training.mantis.appmanager.ApplicationManager;
 
-import javax.xml.rpc.ServiceException;
-import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.Set;
-
-import com.google.gson.Gson;
 
 
 public class TestBase {
@@ -45,8 +29,8 @@ public class TestBase {
             }
             return true;
         }
+        return true;
     }
-
        /* MantisConnectPortType mc = new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("mantis.apiUrl")));
         IssueData issueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
         int st = issueData.getStatus().getId().intValue();
