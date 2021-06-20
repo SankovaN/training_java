@@ -41,6 +41,7 @@ public class ResetPasswordHelper extends BaseHelper {
             if (user.getAccesslevel() == 25) {
                 click(By.linkText(user.getUsername()));
                 wd.navigate().refresh();
+                //wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 click(By.cssSelector("input[value='Сбросить пароль']"));
             return user;
         }

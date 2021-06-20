@@ -3,8 +3,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="Contacts">
         <classes>
-            <class name="training.mantis.tests.HbConnectionTest"/>
-            <class name="training.mantis.tests.ResetPasswordTests"/>
+            <class name="training.mantis.tests.SoapTests"/>
         </classes>
     </test>
 </suite>
