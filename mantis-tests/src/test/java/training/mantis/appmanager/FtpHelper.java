@@ -3,7 +3,6 @@ package training.mantis.appmanager;
 import org.apache.commons.net.ftp.FTPClient;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class FtpHelper {
@@ -21,7 +20,7 @@ public class FtpHelper {
         ftp.deleteFile(backup);
         ftp.rename(target, backup);
         ftp.enterLocalPassiveMode();
-        ftp.storeFile(target, new FileInputStream(file));
+        //ftp.storeFile(target, new FileInputStream(file));
         ftp.disconnect();
     }
     public void restore(String backup, String target) throws IOException {

@@ -39,8 +39,7 @@ public class SoapHelper {
         issueData.setSummary(issue.getSummary());
         issueData.setDescription(issue.getDescription());
         issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()), issue.getProject().getName()));
-        issueData.setProject(new ObjectRef(issue.getProject().get));
-    issueData.setCategory(categories[0]);
+        issueData.setCategory(categories[0]);
         BigInteger issueId = mc.mc_issue_add("administrator", "root", issueData);
         IssueData createdIssueData = mc.mc_issue_get("administrator", "root", issueId);
         return new Issue().withId(createdIssueData.getId().intValue())
