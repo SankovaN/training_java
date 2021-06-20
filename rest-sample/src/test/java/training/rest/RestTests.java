@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests extends TestBase {
 
     @Test
     public void testCreateIssue() throws IOException {
@@ -39,6 +39,7 @@ public class RestTests {
     }
 
     private int createIssue(Issue newIssue) throws IOException {
+        skipIfNotFixed(100);
         String json = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json")
         .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
                 new BasicNameValuePair("description", newIssue.getDescription())))
