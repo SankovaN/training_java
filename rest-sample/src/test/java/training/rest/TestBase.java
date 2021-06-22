@@ -8,6 +8,8 @@ import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 import java.util.Set;
@@ -16,6 +18,16 @@ import java.util.Set;
 public class TestBase {
      protected static final ApplicationManager app
             = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
+
+    @BeforeSuite(alwaysRun = true)
+    public void setUp() throws Exception {
+        app.init();
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() throws Exception {
+        app.stop();
+    }
 
     boolean isIssueOpen(int issueId) throws IOException {
 
