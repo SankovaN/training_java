@@ -51,7 +51,7 @@ public class GroupCreationTests extends TestBase {
     public void testBadGroupCreation() throws Exception {
         app.goTo().groupPage();
         Groups before = app.db().groups();
-        GroupData group = new GroupData().withName("test2").withHeader("test2").withFooter("test3");
+        GroupData group = new GroupData().withName("test2'").withHeader("test2").withFooter("test3");
         app.group().create(group);
         assertThat(app.group().count(), equalTo(before.size()));
         Groups after = app.db().groups();
