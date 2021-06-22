@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 
 import java.io.IOException;
@@ -13,24 +14,36 @@ import java.util.Set;
 
 
 public class TestBase {
+     protected static final ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
 
-    
     boolean isIssueOpen(int issueId) throws IOException {
 
-        String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json")).returnContent().asString();
+        //String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json")).returnContent().asString();
+        //String json = getExecutor().execute(Request.Get(app.getProperty("bugify.baseUrl") + ".json")).returnContent().asString();
+        //String json = getExecutor().execute(Request.Get(app.getProperty("bugify.baseUrl"))).returnContent().asString();
+        //работающий вариант
+        //String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues" + "/" + issueId + ".json")).returnContent().asString();
+        String json = getExecutor().execute(Request.Get(app.getProperty("bugify.baseUrl") + "/" + issueId + ".json")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
         Set<Issue> issueData = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
         }.getType());
 
-        for (Issue nextIssue : issueData) {
+       /* for (Issue nextIssue : issueData) {
             if (nextIssue.getState() == 4) {
                 return false;
             }
             return true;
         }
         return true;
+    }*/
+        if (issueData.iterator().next().getState() == 4) {
+        return false;
+        }
+        return true;
     }
+
        /* MantisConnectPortType mc = new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("mantis.apiUrl")));
         IssueData issueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
         int st = issueData.getStatus().getId().intValue();
@@ -50,4 +63,5 @@ public class TestBase {
             throw new SkipException("Ignored because of issue " + issueId);
         }
     }
+
 }
