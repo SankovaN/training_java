@@ -1,8 +1,6 @@
 package training.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import training.addressbook.model.GroupData;
@@ -53,7 +51,7 @@ public class GroupCreationTests extends TestBase {
     public void testBadGroupCreation() throws Exception {
         app.goTo().groupPage();
         Groups before = app.db().groups();
-        GroupData group = new GroupData().withName("test2'").withHeader("test2").withFooter("test3");
+        GroupData group = new GroupData().withName("test2").withHeader("test2").withFooter("test3");
         app.group().create(group);
         assertThat(app.group().count(), equalTo(before.size()));
         Groups after = app.db().groups();
